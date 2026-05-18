@@ -10,7 +10,7 @@ class Permission(Model):
 
     class Meta:
         database = db
-        table_name = 'permissions'
+        table_name = 'permissions' 
 
 def init_db():
     db.connect()
