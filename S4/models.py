@@ -1,18 +1,23 @@
-from peewee import SqliteDatabase, Model, CharField, ForeignKeyField, IntegerField
+from peewee import SqliteDatabase, Model, CharField, IntegerField, BooleanField
 
 db = SqliteDatabase('permissions.db')
 
+
 class Permission(Model):
+    id = IntegerField(primary_key=True, null=False)
     name = CharField(max_length=100, unique=True, null=False)
     description = CharField(max_length=255, null=False, default='')
+    is_active = BooleanField(null=False, default=True)
 
     class Meta:
         database = db
         table_name = 'permissions'
 
+
 class RolePermission(Model):
+    id = IntegerField(primary_key=True, null=False)
     role_id = IntegerField(null=False)
-    permission_id = ForeignKeyField(Permission, backref='roles')
+    permission_id = IntegerField(null=False)
 
     class Meta:
         database = db
@@ -21,7 +26,13 @@ class RolePermission(Model):
             (('role_id', 'permission_id'), True),
         )
 
+
 def init_db():
     db.connect()
     db.create_tables([Permission, RolePermission], safe=True)
     db.close()
+
+
+if __name__ == "__main__":
+    init_db()
+    print("База данных permissions.db успешно создана")
