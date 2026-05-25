@@ -97,3 +97,9 @@
 | DELETE | `/permissions/{id}` | Удалить |
 | POST | `/role-permissions` | Назначить разрешение роли |
 | DELETE | `/role-permissions` | Отозвать разрешение |
+
+---
+
+## ER-диаграмма
+
+![ER-диаграмма](./erd.png)
