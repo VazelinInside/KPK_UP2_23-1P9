@@ -1,4 +1,4 @@
-from peewee import SqliteDatabase, Model, CharField, IntegerField, BooleanField
+from peewee import SqliteDatabase, Model, CharField, IntegerField, BooleanField, ForeignKeyField
 
 db = SqliteDatabase('permissions.db')
 
@@ -15,7 +15,7 @@ class Permission(Model):
 
 class RolePermission(Model):
     role_id = IntegerField(null=False)
-    permission_id = ForeignKeyField(Permission, null=False)
+    permission_id = ForeignKeyField(Permission, backref='role_permissions', null=False)
 
     class Meta:
         database = db

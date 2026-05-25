@@ -3,7 +3,7 @@ from fastapi import FastAPI, HTTPException, Query
 from pydantic import BaseModel, Field
 from typing import Optional, List
 from peewee import SqliteDatabase, Model, CharField, BooleanField, AutoField
-from .models import db, Permission, RolePermission, init_db
+from models import db, Permission, RolePermission, init_db
 
 
 class PermissionCreate(BaseModel):
