@@ -15,7 +15,7 @@ class Permission(Model):
 
 class RolePermission(Model):
     role_id = IntegerField(null=False)
-    permission_id = IntegerField(null=False)
+    permission_id = ForeignKeyField(Permission, null=False)
 
     class Meta:
         database = db
